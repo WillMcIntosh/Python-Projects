@@ -3,35 +3,35 @@ from tkinter import *
 window = Tk()
 
 l1 = Label(window,text="Title")
-l1.grid(row = 0, column = 0)
+l1.grid(row = 0, column = 0, pady = 12)
 
 l2 = Label(window,text="Author")
-l2.grid(row = 0, column = 2)
+l2.grid(row = 0, column = 2, padx = (2,0), pady = 12)
 
 l3 = Label(window,text="Year")
-l3.grid(row = 1, column = 0)
+l3.grid(row = 1, column = 0, pady = (0,12))
 
 l4 = Label(window,text="ISBN")
-l4.grid(row = 1, column = 2)
+l4.grid(row = 1, column = 2, padx = (2,0), pady = (0,12))
 
 title_text=StringVar()
 e1 = Entry(window, textvariable = title_text)
-e1.grid(row = 0, column = 1)
+e1.grid(row = 0, column = 1, pady = 12)
 
 author_text=StringVar()
 e2 = Entry(window, textvariable = author_text)
-e2.grid(row = 0, column = 3)
+e2.grid(row = 0, column = 3, padx = (4,22), pady = 12)
 
 year_text=StringVar()
 e3 = Entry(window, textvariable = year_text)
-e3.grid(row = 1, column = 1)
+e3.grid(row = 1, column = 1, pady = (0,12))
 
 isbn_text=StringVar()
 e4 = Entry(window, textvariable = isbn_text)
-e4.grid(row = 1, column = 3)
+e4.grid(row = 1, column = 3, padx = (4,22), pady = (0,12))
 
 list1 = Listbox(window, height = 6, width = 35)
-list1.grid(row = 2, column = 0, rowspan = 6, columnspan = 2)
+list1.grid(row = 2, column = 0, rowspan = 6, columnspan = 2, padx = 22)
 sb1 = Scrollbar(window)
 sb1.grid(row = 2, column = 2, rowspan = 6)
 
@@ -54,7 +54,7 @@ b5 = Button(window, text = "Delete", width = 12)
 b5.grid(row = 6, column = 3)
 
 b6 = Button(window, text = "Close", width = 12)
-b6.grid(row = 7, column = 3)
+b6.grid(row = 7, column = 3, pady = (0,12))
 
 
 window.mainloop()

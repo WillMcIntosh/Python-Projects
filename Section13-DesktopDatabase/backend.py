@@ -70,7 +70,7 @@ def delete(id):
 
 
 connect()
-# insert("Hamlet", "Billy Shakespeare", 1600, 123123123)
+# insert("Omelette", "Billy Shakespeare", 1601, 123123123)
 # print(view())
 # update(2, "All About Me", "Will McIntosh", 2018, 10000001)
 # print(search(author="John Smith"))

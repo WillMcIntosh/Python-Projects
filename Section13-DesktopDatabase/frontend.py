@@ -1,6 +1,14 @@
 from tkinter import *
 import backend
 
+def get_selected_row(event):
+    # declare selected_tuple as a global variable for use later
+    global selected_tuple 
+    # returns a tuple with one item, so take the first
+    index = list1.curselection()[0]
+    # get data as a tuple for selected row
+    selected_tuple = list1.get(index)
+
 def view_command():
     list1.delete(0, END)
     for row in backend.view():
@@ -12,6 +20,17 @@ def search_command():
     for row in backend.search(title_text.get(), author_text.get(),
             year_text.get(), isbn_text.get()):
         list1.insert(END, row)
+
+def add_command():
+    backend.insert(title_text.get(), author_text.get(), year_text.get(),
+            isbn_text.get())
+    list1.delete(0, END)
+    list1.insert(END,(title_text.get(), author_text.get(), year_text.get(),
+        isbn_text.get()))
+
+def delete_command():
+    backend.delete(selected_tuple[0])
+    view_command()
 
 window = Tk()
 
@@ -43,6 +62,7 @@ isbn_text=StringVar()
 e4 = Entry(window, textvariable = isbn_text)
 e4.grid(row = 1, column = 3, padx = (4,22), pady = (0,12))
 
+# define list box
 list1 = Listbox(window, height = 6, width = 35)
 list1.grid(row = 2, column = 0, rowspan = 6, columnspan = 2, padx = 22)
 sb1 = Scrollbar(window)
@@ -51,6 +71,9 @@ sb1.grid(row = 2, column = 2, rowspan = 6)
 list1.configure(yscrollcommand = sb1.set)
 sb1.configure(command = list1.yview)
 
+# get data when user selects row in listbox
+list1.bind('<<ListboxSelect>>', get_selected_row)
+
 b1 = Button(window, text = "View All", width = 12, command = view_command)
 b1.grid(row = 2, column = 3)
 
@@ -58,13 +81,13 @@ b1.grid(row = 2, column = 3)
 b2 = Button(window, text = "Search Entry", width = 12, command = search_command)
 b2.grid(row = 3, column = 3)
 
-b3 = Button(window, text = "Add Entry", width = 12)
+b3 = Button(window, text = "Add Entry", width = 12, command = add_command)
 b3.grid(row = 4, column = 3)
 
 b4 = Button(window, text = "Update", width = 12)
 b4.grid(row = 5, column = 3)
 
-b5 = Button(window, text = "Delete", width = 12)
+b5 = Button(window, text = "Delete", width = 12, command= delete_command)
 b5.grid(row = 6, column = 3)
 
 b6 = Button(window, text = "Close", width = 12)

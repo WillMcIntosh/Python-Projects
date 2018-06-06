@@ -2,21 +2,24 @@ from tkinter import *
 import backend
 
 def get_selected_row(event):
-    # declare selected_tuple as a global variable for use later
-    global selected_tuple 
-    # returns a tuple with one item, so take the first
-    index = list1.curselection()[0]
-    # get data as a tuple for selected row
-    selected_tuple = list1.get(index)
-    # fill entries with values from selected row
-    e1.delete(0,END)
-    e1.insert(END, selected_tuple[1])
-    e2.delete(0,END)
-    e2.insert(END, selected_tuple[2])
-    e3.delete(0,END)
-    e3.insert(END, selected_tuple[3])
-    e4.delete(0,END)
-    e4.insert(END, selected_tuple[4])
+    try:
+        # declare selected_tuple as a global variable for use later
+        global selected_tuple 
+        # returns a tuple with one item, so take the first
+        index = list1.curselection()[0]
+        # get data as a tuple for selected row
+        selected_tuple = list1.get(index)
+        # fill entries with values from selected row
+        e1.delete(0,END)
+        e1.insert(END, selected_tuple[1])
+        e2.delete(0,END)
+        e2.insert(END, selected_tuple[2])
+        e3.delete(0,END)
+        e3.insert(END, selected_tuple[3])
+        e4.delete(0,END)
+        e4.insert(END, selected_tuple[4])
+    except IndexError:
+        pass
 
 
 def view_command():
